@@ -14,7 +14,7 @@ const Card = ({ pokemon }) => {
       />
       <p className={styles.id}>#{pokemon.id}</p>
       <h3 className={styles.title}>{pokemon.name}</h3>
-      <Link className={styles.btn} href={`/pokemon/${pokemon.id}`}>Detalhes</Link>
+      <Link className={styles.btn} href={`/pokemons/${pokemon.id}`}>Detalhes</Link>
     </div>
   )
 }
