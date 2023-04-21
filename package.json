@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": { "node": ">=18.13.0" },
   "dependencies": {
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
