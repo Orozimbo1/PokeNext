@@ -1,6 +1,10 @@
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer>
+      <p>
+        <span>PokeNext</span> &copy; 2023
+      </p>
+    </footer>
   )
 }
 
