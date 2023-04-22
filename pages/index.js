@@ -1,16 +1,22 @@
+import axios from 'axios'
+
 import styles from '@/styles/Home.module.css'
 
 import Image from 'next/image'
 
-import Card from '@/components/Card'
+import dynamic from 'next/dynamic'
+
+// import Card from '@/components/Card'
+
+const Card = dynamic(() => import('../components/Card'))
 
 export async function getStaticProps() {
 
-  const maxPokemons = 52
+  const maxPokemons = 100
   const api = 'https://pokeapi.co/api/v2/pokemon/'
 
-  const res = await fetch(`${api}/?limit=${maxPokemons}`)
-  const data = await res.json()
+  const res = await axios.get(`${api}/?limit=${maxPokemons}`)
+  const data = await res.data
 
   // Add pokemon index
   data.results.forEach((item, index) => {

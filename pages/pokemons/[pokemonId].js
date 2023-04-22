@@ -1,14 +1,16 @@
+import axios from "axios"
+
 import Image from "next/image"
 
 import styles from '../../styles/Pokemon.module.css'
 
 export const getStaticPaths = async () => {
 
-  const maxPokemons = 52
+  const maxPokemons = 1
   const api = 'https://pokeapi.co/api/v2/pokemon/'
 
-  const res = await fetch(`${api}/?limit=${maxPokemons}`)
-  const data = await res.json()
+  const res = await axios.get(`${api}/?limit=${maxPokemons}`)
+  const data = await res.data
 
   // Params
   const paths = data.results.map((pokemon, index) => {
@@ -19,7 +21,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 
 }
@@ -28,9 +30,9 @@ export const getStaticProps = async (context) => {
 
   const id = context.params.pokemonId
 
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+  const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
 
-  const data = await res.json()
+  const data = await res.data
 
   return {
     props: { pokemon: data },
@@ -42,12 +44,13 @@ const Pokemon = ({ pokemon }) => {
   return (
     <div className={styles.pokemon_container}>
       <h1 className={styles.title}>{pokemon.name}</h1>
-      <Image 
-        src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} 
+      {/* <Image 
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/diamond-pearl/${pokemon.id}.png`} 
         width={200} 
         height={200} 
         alt={pokemon.name} 
-      />
+        priority={true}
+      /> */}
       <div>
         <h3>Número:</h3>
         <p>#{pokemon.id}</p>

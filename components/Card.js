@@ -4,13 +4,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const Card = ({ pokemon }) => {
+
   return (
     <div className={styles.card}>
       <Image 
-        src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} 
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/diamond-pearl/${pokemon.id}.png`} 
         width={100} 
         height={100} 
-        alt={pokemon.name} 
+        alt={pokemon.name}
       />
       <p className={styles.id}>#{pokemon.id}</p>
       <h3 className={styles.title}>{pokemon.name}</h3>

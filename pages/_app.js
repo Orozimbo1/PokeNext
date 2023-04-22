@@ -1,5 +1,9 @@
-import Layout from '@/components/Layout'
+
 import '@/styles/globals.css'
+
+import dynamic from 'next/dynamic'
+
+const Layout = dynamic(() => import('../components/Layout'))
 
 export default function App({ Component, pageProps }) {
   return (
